@@ -1,9 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { Row, Col, ListGroup, Image, Button, Card } from "react-bootstrap";
+import { Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import Button from "../components/Button";
+
 import {
   useGetOrderDetailsQuery,
   usePayOrderMutation,
@@ -56,7 +58,7 @@ const OrderScreen = () => {
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
-        await payOrder({ orderId, details });
+        await payOrder({ orderId, details }).unwrap();
         refetch();
         toast.success("Payment successful");
       } catch (err) {
@@ -100,7 +102,7 @@ const OrderScreen = () => {
   return isLoading ? (
     <Loader />
   ) : error ? (
-    <Message variant="danger" />
+    <Message variant="danger">{error?.data?.message || error.error}</Message>
   ) : (
     <div className="w-[80%] md:w-[70%] mx-auto my-[2rem]">
       <h1 className="!text-[#502314] ml-3">Order : {order._id}</h1>
@@ -244,10 +246,10 @@ const OrderScreen = () => {
                   <ListGroup.Item>
                     <Button
                       type="button"
+                      variant="submit"
                       className="btn btn-block"
                       onClick={deliverOrderHandler}
                     >
-                      {" "}
                       Mark As Delivered
                     </Button>
                   </ListGroup.Item>

@@ -44,7 +44,7 @@ const PaymentScreen = () => {
               value="PayPal"
               checked
               onChange={(e) => setPaymentMethod(e.target.value)}
-              className="!border-[#50231455] !py-[1rem] border-[1px] text-[1.2rem] rounded-2xl !px-[2.5rem] !my-[1.5rem]"
+              className="!border-[#50231455] !py-[1rem] border-[1px] text-[1.2rem] rounded-lg !px-[2.5rem] !my-[1.5rem] bg-white"
             ></Form.Check>
           </Col>
         </Form.Group>

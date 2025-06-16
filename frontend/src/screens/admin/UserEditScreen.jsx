@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
@@ -45,8 +45,10 @@ const UserEditScreen = () => {
   };
 
   return (
-    <div>
-      <Link to="/admin/userlist">Go Back</Link>
+    <div className="w-[90%] mx-auto mt-4">
+      <Button to="/admin/userlist" variant="back">
+        Go Back
+      </Button>
       <FormContainer>
         <h1>Edit User</h1>
         {loadingUpdate && <Loader />}
@@ -57,7 +59,7 @@ const UserEditScreen = () => {
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="name" className="my-2">
-              <Form.Label>Name</Form.Label>
+              <Form.Label className="text-[1.3rem]">Name</Form.Label>
               <FormControl
                 type="text"
                 placeholder="Enter name"
@@ -67,7 +69,7 @@ const UserEditScreen = () => {
             </Form.Group>
 
             <Form.Group controlId="email" className="my-2">
-              <Form.Label>Email</Form.Label>
+              <Form.Label className="text-[1.3rem]">Email</Form.Label>
               <FormControl
                 type="email"
                 placeholder="Enter email"
@@ -82,6 +84,7 @@ const UserEditScreen = () => {
                 label="Is Admin"
                 checked={isAdmin}
                 onChange={(e) => setIsAdmin(e.target.checked)}
+                className="text-[1.3rem] my-4"
               />
             </Form.Group>
 

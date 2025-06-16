@@ -8,7 +8,8 @@ const FormControl = ({ type, value, onChange, placeholder }) => {
       placeholder={placeholder}
       value={value}
       onChange={onChange}
-      className="!bg-transparent !border-[#50231455] !py-[0.8rem] placeholder:!text-[#50231480] placeholder:!text-[1.4rem] !rounded-lg !text-[1.4rem] !text-[#502314d8] mb-[1.2rem]"
+      className="
+      p-3 mb-2 !text-[1.3rem] !text-inherit placeholder:!text-[#5023147a] "
     ></Form.Control>
   );
 };

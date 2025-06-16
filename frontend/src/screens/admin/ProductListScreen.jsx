@@ -45,9 +45,7 @@ const ProductListScreen = () => {
   };
   return (
     <div className="w-[90%] mx-auto my-8">
-      <Paginate page={data.page} pages={data.pages} isAdmin={true} />
-
-      <Row className="mb-[3rem] items-center  flex border-1 border-[#50231433] p-2 rounded-md bg-[#5023141c]">
+      <Row className="mb-[3rem] items-center flex border-1 border-[#50231433] p-2 rounded-md bg-[#5023141c]">
         <Col>
           <h1 className=" pt-2">Products</h1>
         </Col>
@@ -62,13 +60,16 @@ const ProductListScreen = () => {
           </Button>
         </Col>
       </Row>
+
       {loadingCreate && <Loader />}
       {loadingDelete && <Loader />}
 
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <Message variant="danger">
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
         <>
           <div className="overflow-x-auto w-full">
@@ -108,6 +109,9 @@ const ProductListScreen = () => {
               </tbody>
             </table>
           </div>
+
+          {/* ✅ Safe usage of Paginate */}
+          <Paginate page={data.page} pages={data.pages} isAdmin={true} />
         </>
       )}
     </div>
